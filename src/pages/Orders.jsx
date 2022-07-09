@@ -13,15 +13,15 @@ const Orders = () => {
         dataSource={ordersData}
         allowPaging
         allowSorting
-        allowExcelExport
-        allowPdfExport
+        // allowExcelExport
+        // allowPdfExport
         // contextMenuItems={contextMenuItems}
         // editSettings={editing}
       >
         <ColumnsDirective>
           {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
         </ColumnsDirective>
-        {/* <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, Edit, PdfExport]} /> */}
+        <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, Edit, PdfExport]} />
       </GridComponent>
     </div>
   )

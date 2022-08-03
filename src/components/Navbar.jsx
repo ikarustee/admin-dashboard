@@ -25,11 +25,21 @@ const NavButton = ({title, customFunc, icon, color, dotColor}) => (
 )
 
 const Navbar = () => {
-  const {activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setscreenSize} = useStateContext();
+  const {
+    activeMenu,
+    setActiveMenu,
+    isClicked,
+    setIsClicked,
+    handleClick,
+    screenSize,
+    setScreenSize,
+    currentColor,
+    currentMode
+  } = useStateContext();
 
   // Add resize eventlistener at the first load of the page to track to the screensize
   useEffect(() => {
-    const handleResize = () => setscreenSize(window.innerWidth);
+    const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener('resize', handleResize);
     handleResize();
     // CLEANUP: we have to remove the eventlistener again
@@ -52,28 +62,28 @@ const Navbar = () => {
       <NavButton 
         title="Menu" 
         customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} 
-        color='blue'
+        color={currentColor}
         icon={<AiOutlineMenu />}  
       />
       <div className='flex'>
         <NavButton 
           title="Cart" 
           customFunc={() => handleClick('cart')} 
-          color='blue'
+          color={currentColor}
           icon={<FiShoppingCart />}  
         />
         <NavButton 
           title="Chat"
           dotColor='#03C9D7' 
           customFunc={() => handleClick('chat')} 
-          color='blue'
+          color={currentColor}
           icon={<BsChatLeft />}  
         />
         <NavButton 
           title="Notifications"
           dotColor='#03C9D7' 
           customFunc={() => handleClick('notification')} 
-          color='blue'
+          color={currentColor}
           icon={<RiNotification3Line />}  
         />
         <TooltipComponent content='Profile' position='BottomCenter'>

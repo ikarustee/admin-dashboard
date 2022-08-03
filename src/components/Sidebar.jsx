@@ -10,7 +10,7 @@ import { itemsToOrder } from '@syncfusion/ej2/treemap';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Sidebar = () => {
-  const {activeMenu, setActiveMenu, screenSize} = useStateContext();
+  const {activeMenu, setActiveMenu, screenSize, currentColor} = useStateContext();
 
   const handleCloseSidebar = () => {
     if(activeMenu && screenSize <= 900) setActiveMenu(false);
@@ -49,6 +49,9 @@ const Sidebar = () => {
                   key={link.name}
                   // onClick closes sidebar when user is on mobile devices
                   onClick={handleCloseSidebar}
+                  style={({isActive}) => ({ // we want to return an object with the styles
+                    backgroundColor: isActive ? currentColor :  ''
+                  })} // destructure the parameters in the callback function
                   className={({isActive}) => isActive ? activeLink : normalLink}
                 >
                   {link.icon}
